@@ -7,7 +7,10 @@
 </div>
 <div class="d-flex ms-3 text-nowrap align-self-center">
     <span class="d-flex align-items-center" style="min-width: 18rem">
-       Time to sensor(s) live <i class='fas fa-question-circle ps-1' title='Time format: dd.hh:mm:ss min value 00:01:00. If the sensor doesn`t receive new data within the specified time interval, a notification sends'></i>
+        Time to sensor(s) live
+        <span data-toggle="tooltip" data-placement="bottom" title='Time format: dd.hh:mm:ss min value 00:01:00. If the sensor doesn`t receive new data within the specified time interval, a notification sends'>
+            <i class='fas fa-question-circle ps-1 d-inline-block'></i>
+        </span>
     </span>
     <div class="pb-0" style="width: 17rem;">
         <label id="labelInterval" class="form-control naked-text pb-0">@Model.ExpectedUpdateInterval.DisplayInterval</label>
@@ -18,7 +21,10 @@
 </div>
 <div class="d-flex mt-1 ms-3 text-nowrap">
     <span class="d-flex align-items-center" style="min-width: 18rem">
-        Sensitivity sensor(s) interval <i class='fas fa-question-circle ps-1' title='Time format: dd.hh:mm:ss min value 00:01:00. If the sensor doesn`t return to Ok status after the specified time inverval, a notification sends'></i>
+        Sensitivity sensor(s) interval
+        <span data-toggle="tooltip" data-placement="bottom" title='Time format: dd.hh:mm:ss min value 00:01:00. If the sensor doesn`t return to Ok status after the specified time inverval, a notification sends'>
+            <i class='fas fa-question-circle ps-1'></i>
+        </span>
     </span>
     <div class="pb-0" style="width: 17rem;">
         <label id="labelRestoreInterval" class="form-control naked-text pb-0">@Model.SensorRestorePolicy.DisplayInterval</label>
@@ -27,3 +33,9 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+         $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
