@@ -60,17 +60,19 @@
                         </td>
                         <td>@key.Permissions</td>
                         <td>@key.AuthorName</td>
-                        <td class="text-center">
-                            @if (key.State == KeyState.Expired)
-                            {
-                                <span title="@key.StatusTitle">
-                                    <img class="mb-1" src="~/dist/warning.svg" id="svg_exclamation" alt="warning icon"/>
-                                </span>
-                            }
-                            else
-                            {
-                                <i class='@key.State.ToIcon()' title="@key.StatusTitle"></i>
-                            }
+                        <td class="text-center" >
+                            <span data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="@key.StatusTitle.Replace(Environment.NewLine, "<br>")" data-bs-html="true">
+                                @if (key.State == KeyState.Expired)
+                                {
+                                    <span>
+                                        <img class="mb-1" src="~/dist/warning.svg" id="svg_exclamation" alt="warning icon"/>
+                                    </span>
+                                }
+                                else
+                                {
+                                    <i class='@key.State.ToIcon()'></i>
+                                }
+                            </span>
                         </td>
                     }
                     else
@@ -96,16 +98,18 @@
 
                         <td style="width: 1%;white-space: nowrap">@key.Permissions</td>
                         <td class="text-center">
-                            @if (key.State == KeyState.Expired)
-                            {
-                                <span title="@key.StatusTitle">
-                                    <img class="mb-1" src="~/dist/warning.svg" id="svg_exclamation" alt="warning icon"/>
-                                </span>
-                            }
-                            else
-                            {
-                                <i class='@key.State.ToIcon()' title="@key.StatusTitle"></i>
-                            }
+                             <span data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="@key.StatusTitle.Replace(Environment.NewLine, "<br>")" data-bs-html="true">
+                                @if (key.State == KeyState.Expired)
+                                {
+                                    <span>
+                                        <img class="mb-1" src="~/dist/warning.svg" id="svg_exclamation" alt="warning icon"/>
+                                    </span>
+                                }
+                                else
+                                {
+                                    <i class='@key.State.ToIcon()'></i>
+                                }
+                             </span>
                         </td>
                     }
 
@@ -158,6 +162,9 @@
 @await Html.PartialAsync("~/Views/Shared/_DeletionConfirmationModal.cshtml")
 
 <script>
+    $(document).ready(function () {
+             $('[data-bs-toggle="tooltip"]').tooltip();
+    })
     var changeAccessKeyAction = "@Html.Raw(Url.Action(nameof(AccessKeysController.ModifyAccessKey), ViewConstants.AccessKeysController))";
     $('[id^="changeAccessKey_"]').off("click").on("click",
         function () {
